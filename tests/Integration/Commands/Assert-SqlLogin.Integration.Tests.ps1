@@ -80,12 +80,12 @@ Describe 'Assert-SqlLogin' -Tag @('Integration_SQL2016', 'Integration_SQL2017', 
 
         It 'Should throw a terminating error when asserting a non-existent login' {
             { Assert-SqlLogin -ServerObject $script:serverObject -Principal $script:nonExistentLoginName } |
-                Should -Throw -ErrorId 'ASL0001'
+                Should -Throw -ErrorId 'ASL0001,Assert-SqlLogin'
         }
 
         It 'Should throw a terminating error when using pipeline input' {
             { $script:serverObject | Assert-SqlLogin -Principal $script:nonExistentLoginName } |
-                Should -Throw -ErrorId 'ASL0001'
+                Should -Throw -ErrorId 'ASL0001,Assert-SqlLogin'
         }
     }
 

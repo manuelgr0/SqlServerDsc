@@ -65,7 +65,7 @@ Describe 'Assert-SqlLogin' -Tag 'Public' {
         }
 
         It 'Should throw a terminating error with the correct error ID' {
-            $errorId = 'ASL0001'
+            $errorId = 'ASL0001,Assert-SqlLogin'
             $expectedErrorMessage = $mockLocalizedStringLoginMissing -f 'UnknownUser', 'TestInstance'
 
             { Assert-SqlLogin -ServerObject $mockServerObject -Principal 'UnknownUser' } |
@@ -74,12 +74,12 @@ Describe 'Assert-SqlLogin' -Tag 'Public' {
 
         It 'Should throw a terminating error with InvalidOperation category' {
             { Assert-SqlLogin -ServerObject $mockServerObject -Principal 'UnknownUser' } |
-                Should -Throw -ErrorId 'ASL0001'
+                Should -Throw -ErrorId 'ASL0001,Assert-SqlLogin'
         }
 
         Context 'When passing ServerObject over the pipeline' {
             It 'Should throw a terminating error' {
-                $errorId = 'ASL0001'
+                $errorId = 'ASL0001,Assert-SqlLogin'
 
                 { $mockServerObject | Assert-SqlLogin -Principal 'UnknownUser' } |
                     Should -Throw -ErrorId $errorId
@@ -154,12 +154,12 @@ Describe 'Assert-SqlLogin' -Tag 'Public' {
 
         It 'Should throw an error for non-existing login: NonExistentUser' {
             { Assert-SqlLogin -ServerObject $mockServerObject -Principal 'NonExistentUser' } |
-                Should -Throw -ErrorId 'ASL0001'
+                Should -Throw -ErrorId 'ASL0001,Assert-SqlLogin'
         }
 
         It 'Should throw an error for non-existing login: DOMAIN\NonExistentUser' {
             { Assert-SqlLogin -ServerObject $mockServerObject -Principal 'DOMAIN\NonExistentUser' } |
-                Should -Throw -ErrorId 'ASL0001'
+                Should -Throw -ErrorId 'ASL0001,Assert-SqlLogin'
         }
     }
 }
