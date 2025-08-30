@@ -349,6 +349,10 @@ namespace Microsoft.SqlServer.Management.Smo
         {
         }
 
+        public void Refresh()
+        {
+        }
+
         // Property for SQL Agent support
         public Microsoft.SqlServer.Management.Smo.Agent.JobServer JobServer { get; set; }
 
@@ -788,6 +792,12 @@ namespace Microsoft.SqlServer.Management.Smo
         public bool EncryptConnection;
 
         public void Create()
+        {}
+
+        public void Connect()
+        {}
+
+        public void Disconnect()
         {}
     }
 
